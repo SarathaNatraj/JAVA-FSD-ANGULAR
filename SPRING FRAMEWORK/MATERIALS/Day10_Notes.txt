@@ -1,0 +1,145 @@
+Application - used to perform some task 
+Ex -> Application Software -  Word, Excel, Calculator, Browser
+      System Software - Operating OS, Networking tools
+
+
+Using Java Programming Language 
+	- Core Java Application or Desktop -> o/p will console window - Core ava
+	- Web Application -> o/p will be on the Browser -> Spring Framework (Back End- main logic , business logic ) , FrontEnd (Angular/React  UI Framework)
+	- Mobile application -> o/p will be on the mobile screen -> Android Framework (has both backend and frontend)
+	- Enterprise application -> Java Applets -> Banking, CRM, 
+
+Framework -> built on top of the  any programming language
+	  -> pre-built structure or set of tools to develop your application
+	  -> has libraries, templates and guidelines to streamline you development process
+
+	 -> web, mobile, desktop
+
+
+Java Full Stack Developer with Angular 
+	-> BackEnd, Database, FrontEnd
+
+	-> BackEnd - Development + testing 
+		Core Java - junit,  completed
+		Spring Framework - Core, AOP, MVC, Data JPA, security
+		Spring Boot (testing) - REST API, Web Application
+		Microservices(testing) - spring cloud components
+		
+	-> Database - Development + testing
+		Relational - SQL (MySQL, Oracle, Postgres)
+		Non-Relational - NOSQL (MongoDB)
+		Java coding - Hibernate, Spring Data JPA, Spring Boot Data JPA
+	
+	-> FrontEnd - Development + testing 
+		Structure - HTML
+		Style - CSS, BootStrap
+		Interaction -  JavaScript, ES6, Typescript
+		Angular - consists of Componentsm forms, routing, etc...
+		
+	-> DevOps
+		CI / CD
+		
+		
+Core Java 
+		class - logical template, - variables, methods/functions
+		object - real time entity
+		
+		create an object - using new keyword
+		
+		Spring Framework - we wont use new keyword, 
+							Spring container - creating & managing the objects
+							
+		converting normal java bean into spring bean - @Component - class level annotation
+		
+		@Component
+public class AccountService {
+    // business logic
+}
+
+@Component
+public class AccountRepository {
+    // business logic
+}
+
+@Component
+public class AccountController {
+    // business logic
+}
+
+		
+		@Override, 
+		
+DI 
+  
+  class Customer{
+  
+		int sno;
+		String name;
+		String email;
+		
+		//Injecting the object 
+		Address addr;
+		
+		//methods
+		
+	}
+	
+	class Address{
+	
+		int doorno;
+		String streetAddr;
+		String cityName;
+		String pincode;
+		
+	}
+
+		
+select * from user where username="sowmya" and password="abc"
+
+Spring Framework 
+	-> java based framework developing enterprise applications
+	-> flexible architctures, data access, security 
+
+Key Components 
+	1. Spring Core  - IoC - Inversion Of Control - Objects in the Spring applications are managed by the Spring IoC Container.
+	2. DI - Dependency Injection
+	3. AOP - Aspect Oriented Programming
+	4. Spring Data - Data Access - support for database through JDBC(low-level) or ORM (Hibernate)
+	5. Transaction Management 
+	6. MVC - Model View Controller
+	7. Security - authentication, authorization, encryption(process of converting data into code to prevent unauthorized access), decryption (converting code into data)
+	8. Testing - Core Java, 
+
+
+
+
+Steps to Create Spring Core app
+1. Create a maven project
+2. Add a dependency Spring Core, Context
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-core</artifactId>
+    <version>6.1.1</version>
+</dependency>
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-context</artifactId>
+  <version>6.1.1</version>
+</dependency>
+3. Create resources folder, applicationContext.xml /beans.xml
+	
+
+4. Create a normal Java Bean class , 
+
+5. Create MainApp 
+	Load the context -> through XML 
+	Get bean 
+	Access those methods inside the beans
+	
+	
+	Spring Core - DI, IoC
+	Spring MVC,
+	Spring AOP 
+	
+	Spring Boot 
