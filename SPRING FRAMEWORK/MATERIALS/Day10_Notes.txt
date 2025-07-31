@@ -69,9 +69,12 @@ public class AccountController {
 		
 		@Override, 
 		
-DI 
-  
-  class Customer{
+DI - injecting other class object into main class , 
+	- @Autowired - dependency injection
+
+inheritance - is-a relationship Animal -> Dog, Student -> enginnering student
+			- has-a relationship Car -> Engine, Bike - Engine 
+	class Customer{
   
 		int sno;
 		String name;
@@ -94,7 +97,36 @@ DI
 	}
 
 		
-select * from user where username="sowmya" and password="abc"
+Spring Container
+	- responsible for creating, configuring and assembling Spring Beans
+
+Spring Bean 
+	- plain Java Class, which has follow some rules provided Spring Container
+	
+	1. Class must be public
+	2. Variables should  be private
+	3. Methods should public
+	4. class should be under a package -> layered approach - model, service, repository, controller (no default package)
+	5. Can have Default(empty) constructor with getter & setter or parameterised constructor with getter & setter 
+	6. Class can extend or implement only classes or interface from Spring Frameework API
+	7. Class can override equals(), toString(), hashCode() methods
+	8. class can implements java.io.Serializable
+	9. Class can use Core Java Annotations,Spring Framework Annotations and some more integrations
+	10. Annotate your class with @Component(Base Annotation),@Autowired, @Primary
+		@Entity - inside model package
+		@Service - inside service package
+		@Controller - inside controller package - spring mvc
+		
+		
+	
+
+Spring Configuation can be done in 3 ways
+	
+	1. XML based configuration
+	2. Java based configuration
+	3. Annotation based configuration
+
+
 
 Spring Framework 
 	-> java based framework developing enterprise applications
@@ -116,6 +148,8 @@ Key Components
 Steps to Create Spring Core app
 1. Create a maven project
 2. Add a dependency Spring Core, Context
+
+<dependencies>
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
 <dependency>
     <groupId>org.springframework</groupId>
@@ -127,19 +161,50 @@ Steps to Create Spring Core app
   <artifactId>spring-context</artifactId>
   <version>6.1.1</version>
 </dependency>
-3. Create resources folder, applicationContext.xml /beans.xml
-	
+</dependencies>
+3. Create a normal Java Bean class -> made it in Spring Bean with @Component annotation , 
+4. Create resources folder, applicationContext.xml /beans.xml
+	<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-4. Create a normal Java Bean class , 
+    <bean id="customer" class="com.model.Customer">
+    <!-- Define a bean named "customer" of class "com.model.Customer" -->
+        <!-- Set the property "sno" with the value "1234567890" -->
+        <!-- Set the property "name" with the value "Isha" -->
+        <property name="sno" value="100"></property>
+        <property name="name" value="Isha"></property>
+        <property name="email" value="isha@gmail.com"></property>
+        
+    </bean>
+</beans>
 
-5. Create MainApp 
+
+
+5. Create MainApp - main method 
 	Load the context -> through XML 
 	Get bean 
 	Access those methods inside the beans
 	
+	Assignment - 1
+Healthcare - Appointment Booking System
+Scenario: Develop a healthcare appointment system. Check if a doctor is available on a date, and book an appointment.
+Components:
+	DoctorRepository (returns doctor availability)
+	AppointmentService (books appointment if available)
+Input:
+appointmentService.book("DOC101", "2025-04-10")
+Output:
+	"Appointment confirmed" or "Doctor not available"
+Implementation Notes:
+	Use Map<String, List<LocalDate>> to simulate doctor schedule.
+	Use Spring XML to inject DoctorRepository into AppointmentService.
 	
-	Spring Core - DI, IoC
-	Spring MVC,
-	Spring AOP 
+	Spring Core - DI, IoC - 3 projects
+	Spring MVC - 2 or 3 projects
+	Spring AOP  - 1 project
+	Spring Data JPA - 3 projects 
 	
 	Spring Boot 
