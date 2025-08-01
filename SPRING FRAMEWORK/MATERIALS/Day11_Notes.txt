@@ -1,0 +1,120 @@
+Spring Core Application Configuation can be done in 3 ways
+	
+	1. XML based configuration - beans.xml or appContext.xml
+	2. Java based configuration
+	3. Annotation based configuration ( used in industry standards)
+
+XML Based configuration
+	3 ways 
+		1. constructor based injection - 
+			Java files
+				i. define the property, 
+				ii. define constructor with the property, 
+			beans.xml 
+				iii. define  the depend bean 
+				iv. add the dependent bean as <constructor-arg ref="propertyname"> in the main bean
+	
+		setter based injection - 
+			Java files
+				define the property,
+				getter/setter property
+			beans.xml 
+				define dependent bean 
+				add as property reference("ref" property) in the main bean
+				
+		
+				
+		field based injection
+			Java files
+				define the property with bean use @Autowired annotation
+			beans.xml 
+				define dependent bean
+				add dependent bean in main bean using ref
+			
+				
+		lifecycle -> upto - spring version 2.5 
+			init, destroy method in bean level
+			beans.xml -> init-method="", destory-method=""
+			implements InitilaisingBean interface-> afterPropertiesSet() ->
+			
+			after 2.5 -> LifeCycle
+			
+			
+
+Java Based Configuration
+		All the steps are same like 
+			create maven project,add dependency, create bean class
+		instead of create beans.xml 
+			create AppConfiguration.java -> @Configuration annotation
+				Each method should have @Bean annotation
+					inside method we have to use new operator to create bean objects
+		Create Main Class 
+			load the context
+				//load the Configuration class
+				ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);				
+			fetch the beans
+			access the methods inside the beans
+		
+
+
+Annotation Based Configuation
+	
+	Create maven project
+	Add the dependency spring core
+	define Model package bean classes with @Component, 
+						each property with   @Value,
+						@Autowired - dependency injection
+	resources folder beans.xml inside add this 
+		
+		<context:component-scan base-package="com.mycompany.app.model"/> 
+	
+	Main method class 
+			ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+
+									or
+		  ApplicationContext context = new AnnotationConfigApplicationContext("com.mycompany.app.model");
+      
+	Main method 
+		load the spring container 
+		using getBean method access those objects
+		
+	lifecycle
+		@PostConstruct -> after bean initialsed bean is getting called, User user = new User("admin", "admin")
+		@PreDestroy -> before Spring removes from the context,  db.close(),session.close() 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topics Covered:
+	Types of DI
+	How to initialse collections inside beans
+	Types of Spring Configuration 
+

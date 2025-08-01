@@ -106,9 +106,9 @@ Spring Bean
 	1. Class must be public
 	2. Variables should  be private
 	3. Methods should public
-	4. class should be under a package -> layered approach - model, service, repository, controller (no default package)
+	4. class should be under a package -> layered approach - model, service, repository, controller (no default package), config package also 
 	5. Can have Default(empty) constructor with getter & setter or parameterised constructor with getter & setter 
-	6. Class can extend or implement only classes or interface from Spring Frameework API
+	6. Class can extend or implement only classes or interface from Spring Frameework API, or from custom classes or interfaces
 	7. Class can override equals(), toString(), hashCode() methods
 	8. class can implements java.io.Serializable
 	9. Class can use Core Java Annotations,Spring Framework Annotations and some more integrations
@@ -119,14 +119,6 @@ Spring Bean
 		
 		
 	
-
-Spring Configuation can be done in 3 ways
-	
-	1. XML based configuration
-	2. Java based configuration
-	3. Annotation based configuration
-
-
 
 Spring Framework 
 	-> java based framework developing enterprise applications
@@ -147,7 +139,7 @@ Key Components
 
 Steps to Create Spring Core app
 1. Create a maven project
-2. Add a dependency Spring Core, Context
+2. Add a dependency Spring Core, Context in pom.xml
 
 <dependencies>
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
@@ -163,7 +155,7 @@ Steps to Create Spring Core app
 </dependency>
 </dependencies>
 3. Create a normal Java Bean class -> made it in Spring Bean with @Component annotation , 
-4. Create resources folder, applicationContext.xml /beans.xml
+4. Create applicationContext.xml /beans.xml in resources folder
 	<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -183,7 +175,7 @@ Steps to Create Spring Core app
 
 
 
-5. Create MainApp - main method 
+5. Create MainApp - main method - main entry point for your spring core application
 	Load the context -> through XML 
 	Get bean 
 	Access those methods inside the beans
@@ -202,9 +194,33 @@ Implementation Notes:
 	Use Map<String, List<LocalDate>> to simulate doctor schedule.
 	Use Spring XML to inject DoctorRepository into AppointmentService.
 	
+Assignment - 2
+	Airline Booking - Ticket Confirmation
+Scenario: In an airline booking system, implement a component that confirms ticket booking after checking flight availability. Use Spring XML for wiring beans.
+Requirements:
+	Beans: FlightService, TicketService.
+	TicketService confirms only if seats are available.
+Input:
+	ticketService.confirmBooking("FL123", "USER456")
+Output:
+	"Booking confirmed for USER456 on FL123" or
+	"Flight FL123 is full"
+Instructions:
+	Define all classes and configure in airline-context.xml.
+	Use dependency injection via XML.
+	
 	Spring Core - DI, IoC - 3 projects
 	Spring MVC - 2 or 3 projects
 	Spring AOP  - 1 project
 	Spring Data JPA - 3 projects 
 	
 	Spring Boot 
+	
+	
+	
+Topics Covered:
+	Spring Core basics
+	Spring Bean - rules
+	Dependency Injection
+	How to create Spring Core Application
+	
