@@ -5,7 +5,7 @@ Ex -> Application Software -  Word, Excel, Calculator, Browser
 
 Using Java Programming Language 
 	- Core Java Application or Desktop -> o/p will console window - Core ava
-	- Web Application -> o/p will be on the Browser -> Spring Framework (Back End- main logic , business logic ) , FrontEnd (Angular/React  UI Framework)
+	- Web Application -> o/p will be on the Browser -> Spring MVC Framework (Back End- main logic , business logic ) , FrontEnd (Angular/React  UI Framework)
 	- Mobile application -> o/p will be on the mobile screen -> Android Framework (has both backend and frontend)
 	- Enterprise application -> Java Applets -> Banking, CRM, 
 

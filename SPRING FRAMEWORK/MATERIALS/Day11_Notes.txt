@@ -84,29 +84,110 @@ Annotation Based Configuation
 
 
 
+E-commerce - Order Checkout Workflow - use annotation based configuration
+Scenario: In an e-commerce platform, implement a checkout system that verifies the cart, checks inventory, and places an order. All components must be wired using Spring XML.
+Requirements:
+	annotation configuration only (no xml).
+	Create beans for InventoryService, OrderService, and CartValidator.
+Input Format:
+	OrderService.checkout("CART001")
+Output Format:
+	"Checkout successful for CART001" or
+	"Cart is invalid" or "Item out of stock"
+Classes:
+public class Order {
+    private String orderId;
+    private List<String> itemIds;
+    // getters and setters
+}
+
+public interface InventoryService {
+    boolean isAvailable(String itemId);
+}
+
+public interface CartValidator {
+    boolean validateCart(String cartId);
+}
+
+public interface OrderService {
+    String checkout(String cartId);
+}
+Instructions:
+	use all annotations where ever it is required.
 
 
 
 
+Spring Bean Scopes
+	Singleton  - only one instance 
+	Prototype - every time new instance will be created as per request
+	
+Spring MVC
+	Model - bean class- hold data
+	View - UI - render the data
+	Controller - process the requests
+	
+	Request  - http://localhost:8080/firstmvcapp
+		Controller hit by request
+			method to return view(jsp) names
+			
+	Response - 		check your views(jsp -> home.jsp,welcome.jsp, dashboard.jsp, error.jsp)  folder and render the jsp page
+
+
+Creating Spring MVC App:
+	1. Create Dynamic Web Project with Apache Tomcat
+	2. Convert to Maven Project -> Right click your project -> Configure 	-> 	Covert to Maven Project.
+	3. Open pom.xml, copy paste the dependency 
+	4. Open web.xml which is present inside src/main/webapp/WEB-INF
+		<!-- Spring MVC Dispatcher Servlet -->
+		<servlet>
+			<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Map all URLs to DispatcherServlet -->
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+
+Tomcat 9 -> Spring 5.x -> javax.servlet
+Tomcat 10 -> Spring 6.x -> jakarata.servlet
 
 
 
+Spring Core Annotations
+	@Component, @Value, @Autowired, @Configuration, @Bean
+Spring MVC Annotations
+	@Controller -> make java class controller / HttpServlet class -> request / response
+	@RequestMapping -> 
+		Http Methods - Explaination - Spring MVC Annotations
+		Get - access/fetching the data from server/app -> @GetMapping
+		Post - sending data to server/app -> @PostMapping
+		Put - updating the data in the server -> @PutMapping
+		Delete - removing the data from the server -> @DeleteMapping
+
+	http://localhost:8080/spring-mvc-app/all
+	all 
+	-> select * from booking -> @GetMapping("/all")
+	
+	http://localhost:8080/spring-mvc-app/101 -> id will be part of URL variable -> @PathVariable 
+	
+	/id -> select * from booking  where id = :id -> @GetMapping({/id}) 
 
 
+	@RequestParam -> q=spring boot 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+	@RequestBody -> input to your controller method 
+	@ResponseBody -> output from the controller method 
+	
 
 
 
