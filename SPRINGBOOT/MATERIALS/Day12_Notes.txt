@@ -1,0 +1,89 @@
+1. Core Java - 80% 
+2. Spring Framework - 2 or  3 
+3. Spring Boot with Microservices  - 2 or 3 
+4. Hibernate with DB - 2 
+5. Angular/React - 3 
+6. Testing - 2 
+
+
+DS 
+	
+Packaging 	
+	JAR - Java Archieve - .classes files, libraries - console app
+	WAR - Web Archieve - .classes files, libraries, html, css, images files - web based app
+	
+Spring Boot 
+	-  Web Application (backend -> src/main/java , frontend - webapp -> html files - Thymeleaf)
+	- REST API -(backend -> src/main/java , frontend - angular/react) only the End-points	- no UI
+	
+	
+Create SpringBoot WebApp
+	1. Build tool - Maven
+	2. Lang - Java
+	3. Version - 3.5.4
+	4. Maven build artifact - groupId, pakage etc..
+	5. Packaging - JAR or WAR
+	6. JDK Version - 17
+	7. Dependencies - Spring Web(Embedded Tomcat),Thymeleaf(html pages-UI), Devtools(Automatic Reload)
+	
+	Click on Generate -> zip file will be downloaded in Downloads folder
+	
+	Extract the zip file, copy and paste in your Workspace location
+	
+	
+	BackEnd -> src/main/java - controller package
+								- AppController -> @Controller annotation
+								- Each method should annoted with @GetMapping, @PostMapping, @PutMapping etc..
+	FrontEnd -> src/main/resources - templates 
+									- create a html file
+									
+	@SpringBootApplication is replacing the following 3 annotations
+		@SpringBootConfiguration - replaces - @Configuration
+		@EnableAutoConfiguration - configures the beans for your app
+		@ComponentScan - scan the current package and subpackages
+		
+		
+		
+	add-customer.html
+	home.html - display all the customer - Table Link to Edit , Delete
+	edit-customer.html
+	
+	DataBinding - map html fields (View) to Customer class(Model) property class 
+	th : thymeleaf 
+		2 way -> 
+			Controller to html - showing the add-customer  (controller side)
+				Customer c = new Customer
+				Attach inside model attribute
+				
+			html to Controller (html side)
+				attach to form tag [ th:object="${customer}" modelAttribute="${customer}" ]
+				attach to individual text boxes [ th:field="*{property-name}" ]
+					
+					
+	DataBase 
+		Add dependency - Spring Data JPA, MySQL driver
+		add datasource properties in application.properties
+			spring.datasource.url=jdbc:mysql://localhost:3306/ecommerce-appdb?createDatabaseIfNotExist=true
+			spring.datasource.username=root
+			spring.datasource.password=root
+			spring.datasource.driverClassName=com.mysql.jdbc.Driver
+			spring.jpa.show-sql=true
+			spring.jpa.format-sql=true
+			spring.jpa.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+			spring.jpa.hibernate.ddl-auto=update
+		
+		Create model package -> 
+			Each class annotate with @Entity, primary key @Id with GeneratedValue
+		Create repository package
+			Each interface annotate with @Repository, should extend JpaRepository<Entity,Datatype_of_primary_key>
+		Create Service package
+			Each class annotate with @Service, inject the corresponding the repository.
+			create custom methods for performing the CRUD operations
+		Inject all the services inside the controller class
+		
+			
+					
+	
+	
+		
+	
