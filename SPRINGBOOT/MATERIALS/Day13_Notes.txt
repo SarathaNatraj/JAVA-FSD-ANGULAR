@@ -1,0 +1,68 @@
+Thymeleaf - creating HTML - Front End
+
+Spring Boot WebApp 
+		- BackEnd(with data jpa) - model, repository, service, controller 
+		- FrontEnd - JSP(add dependency manuallly, learn to new lang, script tags, scriptlets)
+		- Thymeleaf - HTML purely code
+		
+Thymeleaf components:-
+	- Variable expressions -> from the controller to html -> model attribute -> ${}
+	- Link expressions -> @{} - URL
+	- Selection expressions (edit pages) - *{} - {customer.id}, {customer.name} etc...
+	
+	
+	
+How Thymeleaf works
+	- <td>${customer.id}</td> - normal html code
+	- <td th:text="${customer.id}"> ssa </td> - thymeleaf code 
+	- <a href="/edit/{id}>Edit</a> - normal a tag in html 
+	- <a th:href="@{'/edit/'+${customer.id}}"> Edit </a> 
+	- <tr th:each="customer : ${customerList}">
+	
+	
+SpringBoot WebApp
+
+ REST API -(backend -> src/main/java , frontend - angular/react) only the End-points	- no UI
+ 
+ Custom End point
+ 1. Movie Endpoints:
+GET /api/movies: Retrieve all movies.
+GET /api/movies/{id}: Retrieve details of a specific movie by its ID.
+POST /api/movies: Create a new movie.
+PUT /api/movies/{id}: Update a movie by ID.
+DELETE /api/movies/{id}: Delete a movie by ID.
+	
+	
+	URL - Uniform Resource Locator
+	URI - Uniform Resource Identifier
+	Resource - collection of data identified by URI
+	Http Verbs - GET, POST, PUT, DELETE, PATCH
+	Stateless - no data is stored
+	
+	
+Steps to Create SpringBoot REST API:-
+	1. Project creation - no change - As like Spring Boot WebApp
+	2. Extract and Import into Eclipse IDE
+	3. Change the server.port and add database related properties in application.properties file
+	4. complete model, repository, service packages.
+	5. controller - Controller class should annotate with @RestController,Input @RequestBody ,  output in the form of JSON/XML 
+	6. no code in the templates 
+	
+	
+	
+	GetMapping - access with the browser
+	PostMapping,PutMapping - PostMan - api test tool
+	
+	
+	Http Status 
+		200 - success
+		400 - resource not found
+		500 - server/application error
+		
+		http://locahost:3333/api/customers - PostMapping
+		{
+			"name" : "anoop kumar",
+			"password" : "12",
+			"email" : "anoop@gmail.com"
+		}
+		

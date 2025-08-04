@@ -51,11 +51,11 @@ Create SpringBoot WebApp
 	DataBinding - map html fields (View) to Customer class(Model) property class 
 	th : thymeleaf 
 		2 way -> 
-			Controller to html - showing the add-customer  (controller side)
+			Controller to html(Model object) - showing the add-customer  (controller side)
 				Customer c = new Customer
 				Attach inside model attribute
 				
-			html to Controller (html side)
+			html to Controller (html side) (ModelAttribute)
 				attach to form tag [ th:object="${customer}" modelAttribute="${customer}" ]
 				attach to individual text boxes [ th:field="*{property-name}" ]
 					
@@ -80,6 +80,18 @@ Create SpringBoot WebApp
 			Each class annotate with @Service, inject the corresponding the repository.
 			create custom methods for performing the CRUD operations
 		Inject all the services inside the controller class
+		
+		
+	
+	Topics Covered:
+		SpringBoot Intro
+		Simple Web app using SpringBoot - Portifolio - static web pages
+		DataBinding
+		SpringBoot Data JPA - 
+		Complete Ecommerce App - CRUD operations - Customer Entity
+		HomeTask - Order, Product and Payment
+		
+		
 		
 			
 					
