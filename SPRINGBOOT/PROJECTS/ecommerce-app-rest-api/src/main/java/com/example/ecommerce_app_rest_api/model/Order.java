@@ -1,6 +1,8 @@
 package com.example.ecommerce_app_rest_api.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -9,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -30,10 +33,23 @@ public class Order {
     @JsonIgnore
     @JoinColumn(name = "customer_id")
     private Customer customer;
+    
+    @ManyToMany(mappedBy = "orders")
+    private List<Product> products = new ArrayList();
+    
 
     // Getters and Setters
     
-    public Customer getCustomer() {
+    public List<Product> getProducts() {
+		return products;
+	}
+    
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
+	public Customer getCustomer() {
 		return customer;
 	}
 
@@ -73,6 +89,9 @@ public class Order {
 	public String toString() {
 		return "Order [id=" + id +   ", orderDate=" + orderDate + "]";
 	}
-    
+    public void addProduct(Product p) {
+    	this.products.add(p);
+    	p.getOrders().add(this);
+    }
     
 }

@@ -1,5 +1,6 @@
 package com.example.ecommerce_app_rest_api.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -20,7 +21,7 @@ public class Customer {
     private int age;
     
     @OneToMany(mappedBy = "customer")
-    private List<Order> orders;
+    private List<Order> orders = new ArrayList<Order>();
 
 //    @OneToMany(mappedBy = "customer")
 //    private List<Order> orders;

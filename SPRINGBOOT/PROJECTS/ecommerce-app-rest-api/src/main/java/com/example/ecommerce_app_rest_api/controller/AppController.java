@@ -16,10 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.ecommerce_app_rest_api.exception.CustomerNotFoundException;
 import com.example.ecommerce_app_rest_api.model.Customer;
 import com.example.ecommerce_app_rest_api.model.Order;
+import com.example.ecommerce_app_rest_api.model.Payment;
+import com.example.ecommerce_app_rest_api.model.Product;
 import com.example.ecommerce_app_rest_api.service.CustomerService;
 import com.example.ecommerce_app_rest_api.service.OrderService;
+import com.example.ecommerce_app_rest_api.service.PaymentService;
+import com.example.ecommerce_app_rest_api.service.ProductService;
 
 @RestController
 @RequestMapping("/api")
@@ -32,6 +37,12 @@ public class AppController {
 	@Autowired
 	OrderService orderService;
 	
+	@Autowired
+	PaymentService paymentService;
+	
+	@Autowired
+	ProductService productService;
+	
 	@GetMapping("/customers")
 	public List<Customer> getAllCustomer(){
 		return customerService.getAllCustomers();
@@ -42,13 +53,16 @@ public class AppController {
 		return customerService.saveCustomer(customer);
 	}
 	@GetMapping("/customers/{id}")
-	public ResponseEntity<Customer> getCustomerById(@PathVariable Long id){
+	public ResponseEntity<Customer> getCustomerById(@PathVariable Long id) throws CustomerNotFoundException{
 		Customer customer = customerService.getCustomerById(id);
+		if(customer == null) {
+			throw new CustomerNotFoundException("Customer not found with '"+id+"'");
+		}
 		return  new ResponseEntity<Customer>(customer,HttpStatus.OK) ;
 	}
 	
 	@PutMapping("/customers/{id}")
-	public Customer updateCustomer(@RequestBody Customer customer, @PathVariable Long id) {
+	public Customer updateCustomer(@RequestBody Customer customer, @PathVariable Long id) throws CustomerNotFoundException {
 		Customer existingCustomer = customerService.getCustomerById(id);
     	existingCustomer.setName(customer.getName());
     	existingCustomer.setPassword(customer.getPassword());
@@ -69,8 +83,19 @@ public class AppController {
 	
 	
 	@GetMapping("/customers/byName/{name}")
-	public Customer getCustomerByName(@PathVariable String name) {
-		return customerService.getCustomerByName(name);
+	public ResponseEntity<?> getCustomerByName(@PathVariable String name) throws CustomerNotFoundException {
+		/*
+		 * Customer c = customerService.getCustomerByName(name); if(c!= null) { return
+		 * ResponseEntity.status(HttpStatus.CREATED).body(c); } return
+		 * ResponseEntity.status(HttpStatus.CREATED).body(new
+		 * RuntimeException("Customer Not found"));
+		 */
+		
+		Customer c = customerService.getCustomerByName(name);
+		if(c == null) {
+			throw new CustomerNotFoundException("Customer not found with '"+name+"'");
+		}
+		 return ResponseEntity.status(HttpStatus.CREATED).body(c);
 	}
 	@GetMapping("/customers/byNameAndEmail/{name}")
 	public Customer getCustomerByName(@PathVariable String name, @RequestParam String email) {
@@ -98,7 +123,21 @@ public class AppController {
 	}
 	
 	@PostMapping("/orders")
-    public ResponseEntity<Order> createOrder(@RequestParam Long customerId) {
+    public ResponseEntity<Order> createOrder(@RequestParam Long customerId) throws CustomerNotFoundException {
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(customerId));
     }
+	@PostMapping("/payments")
+    public ResponseEntity<Payment> createPayment(@RequestParam Long orderId, @RequestParam Double amount) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(paymentService.createPayment(orderId, amount));
+    }
+	@PostMapping("/products")
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProduct(product));
+    }
+	@PostMapping("/orders/map")
+    public ResponseEntity<Order> createOrder(@RequestParam Long customerId, @RequestBody List<Long> productIds) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrderWithProducts(customerId, productIds));
+    }
+	
+	
 }

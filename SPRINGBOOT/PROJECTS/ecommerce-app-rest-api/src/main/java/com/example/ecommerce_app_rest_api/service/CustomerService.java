@@ -3,6 +3,7 @@ package com.example.ecommerce_app_rest_api.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.ecommerce_app_rest_api.exception.CustomerNotFoundException;
 import com.example.ecommerce_app_rest_api.model.Customer;
 import com.example.ecommerce_app_rest_api.repository.CustomerRepository;
 
@@ -27,9 +28,13 @@ public class CustomerService {
 		return customerRepository.findAll();
 	}
 
-	public Customer getCustomerById(Long id) {
+	public Customer getCustomerById(Long id) throws CustomerNotFoundException {
 		// TODO Auto-generated method stub
-		return customerRepository.findById(id).get();
+		Optional<Customer> cust = customerRepository.findById(id);
+		if(cust.isPresent())
+			return customerRepository.findById(id).get();
+		else
+			throw new CustomerNotFoundException("Customer not found with '"+id+"'");
 	}
 
 	public void deleteCustomer(Long id) {
@@ -41,6 +46,7 @@ public class CustomerService {
 
 	public Customer getCustomerByName(String name) {
 		// TODO Auto-generated method stub
+		
 		return customerRepository.findByName(name);
 	}
 

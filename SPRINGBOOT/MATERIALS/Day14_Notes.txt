@@ -1,0 +1,106 @@
+JPA - Java Persistence API 
+
+
+Database 
+	1. JDBC 
+		-> Load the driver
+		-> Establish the connection
+		-> Create Statement object
+		-> Construct a query string
+		-> Execute the Statement object
+		-> Iterate the Resultset
+		
+	2. JPA - just specification, persistence api to  map java objects to database tables 
+		Customer.java mapped to customer table 
+		ORM - Object Relational Mapping 
+		Annotations - @Entity, @Id, @GeneratedValue, @Column, @Table etc...
+		why is called Persistence aPI - storing object into Database.
+		blueprint or template
+		JPQL - Java Persistence Query Lang 
+		EntityManager em, EntityManagerFactory
+		
+	
+	3. Hibernate - implementation of JPA 
+		Extra tools connect with Database
+		HQL - Hibernate Query Lang
+		
+		Classes : Configuration, SessionFactory, Session, Transaction  
+		Methods : tx.beginTransaction()
+					session.save(c), session.get(id), session.update(c), session.delete(id)
+				  tx.commit()
+				  
+	4. Spring Data JPA
+		built in repositores
+		Repository - SessionFactory, Session is built-in the repository
+					- save(), findById, findAll, deleteAll, deleteById - 15 CRUD  methods  for your tables
+	5. SpringBoot Database JPA
+		extension of Spring Data JPA
+		Scans entities and repositores
+		Auto-configures your database, SessionFactory, Session, Transaction
+		built-in starter dependency
+			application.properties 
+			
+			
+	One-to-One Relationship Order(OneToOne) - Payment(OneToOne)
+		One row in order table is mapped with one row in payment table
+	One-To-Many Relationship Customer(OneToMany) - Order(ManyToOne) - bidirectional relationship
+		One customer has many order - 1 side
+		Many orders belongs to one customer 
+		
+		ManyToMany - extra table will be created -> primary key column from both tables
+		
+		Order , Product - ManyToMany Relationship
+		
+		Order.java:-
+		 @ManyToMany(mappedBy = "orders")
+		private List<Product> products = new ArrayList();
+		
+		public void addProduct(Product p) {
+			this.products.add(p); //one side addding p to products
+			p.getOrders().add(this); //for this product get the orders and add this object
+		}
+		
+		
+		Product.java:-
+		@ManyToMany
+    @JoinTable(
+      name = "order_product", 
+      joinColumns = @JoinColumn(name = "product_id"), 
+      inverseJoinColumns = @JoinColumn(name = "order_id"))
+    private List<Order> orders;
+	
+	
+	in the OrderService
+	 public Order createOrderWithProducts(Long customerId, List<Long> productIds) {
+	        Customer customer = customerService.getCustomerByEmail("vikas@hotmail.com");
+	        if (customer == null) {
+	            throw new RuntimeException("Customer not found");
+	        }
+	        Order order = new Order();
+	        
+	        List<Product> products = productIds.stream()
+	                .map(productId ->{
+	                	Product p = productService.getProductById(productId).get();
+	                	//relation set -> fill your join table
+	                	order.addProduct(p);
+	                	return p;
+	                })
+	                .collect(Collectors.toList());
+	        
+	        
+	        order.setCustomer(customer);
+	      //relation set -> fill your join table
+	        order.setProducts(products);
+	        order.setOrderDate(LocalDateTime.now());
+
+	        return orderRepository.save(order);
+	    }
+
+	
+	
+	Exception Handling - custom exception handling
+		create custom exception class which extends base exception,
+		@ControllerAdvice - Exception controller - should annotate @ControllerAdvice, 
+			inside each method should annotate with @ExceptionHandler
+		
+		controller / service code if the customer object is null, throw the custom exception class
