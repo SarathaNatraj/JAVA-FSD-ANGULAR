@@ -1,0 +1,44 @@
+Spring Boot WebApp Exception Handling 
+	Same steps as your REST API
+		individual method return value has String - error-page.html (templates folder)
+	
+Spring Boot Testing
+
+		End-to-End testing - complete testing - MockMvc 
+		Integration testing - combining layers( service+ respository) - JUNIT + Mockito
+		Unit testing - testing individual components (Repository) - JUNIT
+
+		Any dependency required ? no
+		
+		spring-boot-starter-test - junit, mockito
+		
+		testing - AAA - Arrange Action Assertion
+		
+		model - no testing layer
+		repository - @DataJpaTest 
+		service - @SpringBootTest - junit + mockito
+		controller - MockMvc
+		
+		
+		@Test
+public void testUpdateProduct() {
+  
+    Product p= new Product();
+    p.setName("Pencil");
+    p.setPrice(10.0);
+    Product saved = productRepository.save(p);
+ 
+    
+    saved.setName("Color Pencil");
+    saved.setPrice(15.0);
+    Product updated = productRepository.save(saved);
+ 
+    
+    assertEquals(saved.getId(), updated.getId());
+    assertEquals("Color Pencil", updated.getName());
+    assertEquals(15.0, updated.getPrice());
+}
+
+TDD - Test Driven Development - Unit testing
+BDD - Behaviour Driven Development - Mockito testing
+ 

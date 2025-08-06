@@ -14,13 +14,22 @@ public class Customer {
     private String name;
     private String email;
     private String password;
+    private int age;
     
 //    @OneToMany(mappedBy = "customer")
 //    private List<Order> orders;
 
     // Getters and Setters
     
-    public Customer() {
+    public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public Customer() {
     	super();
     }
 

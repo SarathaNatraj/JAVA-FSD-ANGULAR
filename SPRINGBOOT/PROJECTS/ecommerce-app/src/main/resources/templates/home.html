@@ -6,7 +6,9 @@
 	<a href="/add-customer">Add Customer</a>
 	
 </nav>
-
+<div th:if="${message}">
+<p style="color:red" th:text="${message}">Default Text </p>
+</div>
 <div align="center">
 		<h1>Customer List</h1>
 		

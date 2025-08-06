@@ -18,7 +18,7 @@ Database
 		blueprint or template
 		JPQL - Java Persistence Query Lang 
 		EntityManager em, EntityManagerFactory
-		
+		persistence.xml
 	
 	3. Hibernate - implementation of JPA 
 		Extra tools connect with Database
@@ -28,6 +28,7 @@ Database
 		Methods : tx.beginTransaction()
 					session.save(c), session.get(id), session.update(c), session.delete(id)
 				  tx.commit()
+		hibernate.cfg.xml
 				  
 	4. Spring Data JPA
 		built in repositores
@@ -104,3 +105,9 @@ Database
 			inside each method should annotate with @ExceptionHandler
 		
 		controller / service code if the customer object is null, throw the custom exception class
+		
+		
+Topics Covered:-
+	Database point of view topics to be covered - JDBC, JPA, Hibernate, Spring Data JPA, SpringBoot Data JPA
+	Relationship - OneToOne, OneToMany
+	Exception Handling - REST API
