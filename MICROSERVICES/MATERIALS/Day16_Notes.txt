@@ -1,0 +1,95 @@
+Spring Cloud Components
+	API Gateway - Routing
+	Service Discovery -
+	Load balancing
+	Fault tolerance
+	Distributed Tracing
+	Communication b/n Microservice
+	
+Microservice
+	E-commerce-app-rest-api
+		Convert your Monolithic App to Microservice App
+		
+		6. payment-service - Payment - 4444 
+		5. order-service - Order - 3333
+		4. customer-service - Customer - 2222 
+		3. product-service - Product - 1111 - done - UP dependency(SpringWeb, spring data jpa, devtools, mysql, eureka-discovery-client) "each microservices is individual spring boot application - first all the endpoints tested local port number, test with gateway port no" - model,repository,service, controller, exception
+		2. api-gateway - 9090 - done - UP dependency(eureka-discovery-client, gateway) - 
+		1. eureka-server - 8761  - done - UP dependency(eureka-server)
+		service registery, service discovery 
+		
+		http://localhost:1111/api/customers
+		http://localhost:2222/api/products
+		 customer cant remember separate port numbers, we need common port number 
+		
+		Gateway- single entry point for all the microservices
+		
+		http://localhost:9090/api/customers
+		http://localhost:9090/api/products
+		
+		Service Discovery - registers all microservices + gateway
+			Eureka Server - make all microservices + gateway as client to server
+		
+		1. Create eureka-server springboot application only one dependency(Eureka Server)
+			application.properties
+				server.port=8761
+				eureka.client.register-with-eureka=false
+				eureka.client.fetch-registry=false
+			Go the EurekaServerApplication.java
+				@EnableEurekaServer
+			Run the App - http://localhost:8761
+			
+		2. Create api-gateway springboot application - two dependencies
+			(Gateway,Eureka Discovery Client)
+			Go to pom.xml, search gateway dependency
+				Remove server-webmvc, if springboot-starter-web is there then remove
+			application.properties
+				server.port=9090
+				eureka.client.register-with-eureka=true
+				eureka.client.fetch-registry=true				eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+				eureka.instance.hostname=localhost
+			Go to ApiGatewayApplication.java
+				@Bean
+				public RouteLocator routes(RouteLocatorBuilder builder) {
+					return builder.routes()
+							.route("product-service", r -> r.path("/api/products/**")
+									.uri("http://localhost:1111"))
+							.route("customer-service", r -> r.path("/api/customers/**")
+									.uri("http://localhost:2222"))
+							.route("order-service", r -> r.path("/api/orders/**")
+									.uri("http://localhost:3333"))
+							.route("payment-service", r -> r.path("/api/payments/**")
+									.uri("http://localhost:4444"))
+							.build();
+				} 	
+		3. Create individual microservices -> product-service springboot application - 5 dependencies ( SpringWeb, Spring Data JPA, Spring Boot Devtools, MySQL, Eureka Discovery client)
+			application.properties - eureka client properties + database properties
+				server.port=1111
+
+			#properties - eureka-client
+			eureka.client.register-with-eureka=true
+			eureka.client.fetch-registry=true		eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+			eureka.instance.hostname=localhost
+			create model, repository, service, controller
+		4. Create individual microservices -> product-service springboot application - 5 dependencies ( SpringWeb, Spring Data JPA, Spring Boot Devtools, PostGres Driver, Eureka Discovery client) 
+			application.properties - eureka client properties + database properties
+			server.port=2222
+
+			#properties - eureka-client
+			eureka.client.register-with-eureka=true
+			eureka.client.fetch-registry=true		eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+			eureka.instance.hostname=localhost
+			
+			spring.datasource.url=jdbc:postgresql://localhost:5432/customer-service-db?createDatabaseIfNotExist=true
+			spring.datasource.username=root
+			spring.datasource.password=root
+			spring.datasource.driverClassName=org.postgresql.Driver
+			spring.jpa.show-sql=true
+			spring.jpa.format-sql=true
+			spring.jpa.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+			spring.jpa.hibernate.ddl-auto=update
+
+
+			create model, repository, ser
+		
+		5432
