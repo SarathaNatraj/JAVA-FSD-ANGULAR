@@ -46,13 +46,42 @@ OpenFeign
 		individual methods
 			ProductDTO p = productClient.getProductById(id);
 			
+Circuit Breaker  or Fault tolerance 
+		if customer-service is down, we are going to handle it by saying that "As of service is down, try later"
+	
+	Implementation:-
+		Spring boot version 3.4.8
+		1. add dependency
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>		<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+		</dependency>
+		2. Service class 
+			@Autowired
+			CircuitBreakerFactory circuitbreakerfactory
 			
+			public CustomerDTO getCustomer(long id) {
+				return circuitBreakerFactory.create("customerdb").run(
+						() -> restTemplate.getForObject(CUSTOMER_URL + "/" + id, CustomerDTO.class),
+						throwable -> customerFallBack(id, throwable));
+			}
+
+			public CustomerDTO customerFallBack(long id, Throwable ex) {
+				return new CustomerDTO(id, "Unknown Name (fallback)", "Unknown Name (fallback)", "Unknown Email (fallback)",
+						"Unknown Phone Number (fallback)", null, 0);
+			}
+
 			
 
 
 
 	
-	
+Pending Topics
+		Circuit breaker - Today
+		Kafka - Monday morning
+		Load Balancing - Monday afternoon
+		Config Server - Tuesday
+		Distributed Tracing - Tuesday
+		Spring Security - Wednesday
 	
 	
 	

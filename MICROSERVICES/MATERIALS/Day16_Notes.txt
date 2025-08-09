@@ -1,9 +1,9 @@
 Spring Cloud Components
 	API Gateway - Routing - done
 	Service Discovery - done
-	Load balancing
-	Fault tolerance -  
-	Distributed Tracing
+	Load balancing - 11/08/2025
+	Fault tolerance -  09/08/2025
+	Distributed Tracing - 12/08/2025
 	Communication b/n Microservice - one to other microservices communication - RESTTemplate , FeignClient
 		Synchronous - line by line - request/response - RESTTemplate  - dones
 		Asynchronous - sending no of requests , after 4 th request will response for 1st request will be recievde - Kafka 
