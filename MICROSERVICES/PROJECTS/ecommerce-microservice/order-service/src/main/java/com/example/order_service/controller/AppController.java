@@ -3,6 +3,7 @@ package com.example.order_service.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +30,10 @@ public class AppController {
 	public String placeOrder(@PathVariable Long customerId) {
 		return orderService.placeOrder(customerId);
 		
+	}
+	
+	@GetMapping("/{productId}/qty/{quantity}")
+	public Order createOrderWithProduct(@PathVariable Long productId, @PathVariable Integer quantity) {
+		return orderService.createOrderWithProduct(productId, quantity);
 	}
 }

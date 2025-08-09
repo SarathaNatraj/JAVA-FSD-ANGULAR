@@ -15,16 +15,33 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    private Integer quantity;
     
-    private LocalDateTime orderDate;
+    public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	private LocalDateTime orderDate;
     
     private Long customerId; //reference customer-service, customer entity
     
-    
+    private Long productId; // reference product-service , product entity
 
     // Getters and Setters
     
     
+	public Long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
+
 	public Long getCustomerId() {
 		return customerId;
 	}

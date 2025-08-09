@@ -1,0 +1,59 @@
+Spring Data JPA
+	@Entity, @Id, @GeneratedValue
+	
+Spring Data MongoDB
+	@Document - each table/entity
+	@Id -	Datatype of property should be string
+	@Collection - collections of documents
+	
+	Model, Repository - will be changed
+	Controller, Service - no change
+	
+SpringBoot REST API/Microservice with MongoDB
+	1. Spring initializer - dependency (SpringWeb, Spring Devtools, Eureka Discovery Client, Spring Data MongoDB)
+	2. application.properties - create database manually
+		spring.data.mongodb.uri=mongodb://localhost:27017/
+		spring.data.mongodb.database=payment-service
+	3. Model -> 
+		Annotate your with @Document annotation, @Id Datatype of property should be string
+	4. Repository ->
+		should extend MongoRepository
+	5. No changes in service, controller layers
+	
+OpenFeign
+	Communicate with one microservice to other
+	Scenario - OrderService calls the ProductService to product details
+		
+	1. Both Service should have dependency
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+	2. 	OrderService - consuming service - OpenFeign
+		main.java -> EnableFeignClients
+		Create a Feign Client Interface inside the OrderService
+			@FeignClient(name="product-service", url="http://localhost:1111")
+			public interface ProductClient {
+				
+				@GetMapping("/api/products/{id}")
+				ProductDTO getProductById(@PathVariable Long id );
+
+			}
+
+		Service class
+			@Autowired
+			ProductClient productClient
+		individual methods
+			ProductDTO p = productClient.getProductById(id);
+			
+			
+			
+
+
+
+	
+	
+	
+	
+	
+s

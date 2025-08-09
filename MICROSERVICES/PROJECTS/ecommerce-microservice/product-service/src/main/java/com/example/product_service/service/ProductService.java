@@ -22,9 +22,9 @@ public class ProductService {
 	    public Optional<Product> getProductByName(String name) {
 	        return productRepository.findByName(name);
 	    }
-	    public Optional<Product> getProductById(Long name) {
+	    public Optional<Product> getProductById(Long id) {
 	    	
-	        return productRepository.findById(name);
+	        return productRepository.findById(id);
 	    }
 
 		public List<Product> getAllProducts() {
