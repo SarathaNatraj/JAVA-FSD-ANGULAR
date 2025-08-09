@@ -36,6 +36,7 @@ public class AppController {
 	}
 	@GetMapping("/{id}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable Long id) {
+		System.out.println(" inside getCustomerById");
 		Customer customer = customerService.getCustomerById(id);
 		if(customer == null) {
 		//	throw new CustomerNotFoundException("Customer not found with '"+id+"'");

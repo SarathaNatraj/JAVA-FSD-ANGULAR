@@ -1,0 +1,28 @@
+
+Booking service - 2003
+Customer service - 2001
+
+OrderService - 3333
+CustomerService - 2222
+
+Scenario - OrderService need customer details from Customer Service while processing order
+RESTTemplate - Communicate from OrderService to CustomerService
+	XXXXService.java - main method class / Config.class
+		Define the RESTTemplate bean class
+		@Bean
+		public RestTemplate restTemplate() {
+			return new RestTemplate();
+		
+		}
+	DTO package / model package
+		Create DTO class - no Annotations
+	XXXService - service class
+		Autowire the RESTTemplate object
+		Define the Other MicroService URL, as String variable
+		corressponding method	
+			restTemplate.getForObject(MicroService_URL with endpoint, Dummy/DTO.class)
+		
+		
+		
+Topics Covered:-
+	RESTTemplate

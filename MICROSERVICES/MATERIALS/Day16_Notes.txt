@@ -1,10 +1,12 @@
 Spring Cloud Components
-	API Gateway - Routing
-	Service Discovery -
+	API Gateway - Routing - done
+	Service Discovery - done
 	Load balancing
-	Fault tolerance
+	Fault tolerance -  
 	Distributed Tracing
-	Communication b/n Microservice
+	Communication b/n Microservice - one to other microservices communication - RESTTemplate , FeignClient
+		Synchronous - line by line - request/response - RESTTemplate  - dones
+		Asynchronous - sending no of requests , after 4 th request will response for 1st request will be recievde - Kafka 
 	
 Microservice
 	E-commerce-app-rest-api
@@ -93,3 +95,8 @@ Microservice
 			create model, repository, ser
 		
 		5432
+		
+Topics Covered:-
+	Microservices introduction
+	Service discovery
+	API Gateway
