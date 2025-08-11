@@ -24,7 +24,7 @@ public class ApiGatewayApplication {
                 .route("product-service", r -> r.path("/api/products/**")
                         .uri("http://localhost:1111"))
                 .route("customer-service", r -> r.path("/api/customers/**")
-                        .uri("http://localhost:2222"))
+                        .uri("lb:customer-service"))
                 .route("order-service", r -> r.path("/api/orders/**")
                         .uri("http://localhost:3333"))
                 .route("payment-service", r -> r.path("/api/payments/**")

@@ -41,5 +41,11 @@ private Long id;
     public CustomerDTO() {
     	super();
     }
+	public CustomerDTO(Long customerId, String string, String string2) {
+		// TODO Auto-generated constructor stub
+		this.id=customerId;
+		this.name=string;
+		this.email=string2;
+	}
 
 }

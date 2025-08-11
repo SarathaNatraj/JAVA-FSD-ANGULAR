@@ -1,0 +1,42 @@
+Pending Topics
+		Circuit breaker - Saturday - done
+		Kafka - Wednesday 
+		Load Balancing - Monday 
+		Config Server - Monday
+		Distributed Tracing - Tuesday
+		Spring Security - Tuesday
+	
+Load balancing - distributing the requests a/c multiple microservice instances making sure that no single instance is taking too much load.
+
+
+Order Service -> calling customer service
+
+Customer Service - 2222 
+Run the Customer service on multiple ports - 2221, 2222, 2223, 
+	Main method of your application
+		Right Click -> Run Configurations -> Click New Configuration -> Give name to the Configuration -> Move to Arguments Tab
+			Program Arguments		
+				--server.port=2221
+			VM Arguments
+				-Dserver.port=2223
+				
+First time -> /customers -> 2221
+			/customers -> 2222
+			/customers -> 2223
+			/customers -> 2221
+	
+	
+Implementing the client Load Balancing
+	1. Client application(Customer-service) should run on multiple ports
+	2. Main Application (Order-service)
+		i) @Bean with the restTemplate()
+		   Add this Annotation @LoadBalanced
+		ii) API end-point definition should be like this 
+				http://customer-service/api/customers
+			or not like below
+				http://localhost:2222/api/customers
+	3. APIGateway main method
+		change the uri for client application
+			 .uri("lb:customer-service"))
+		
+Ngx server 

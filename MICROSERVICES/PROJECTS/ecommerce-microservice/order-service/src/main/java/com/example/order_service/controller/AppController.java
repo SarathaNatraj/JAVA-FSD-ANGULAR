@@ -1,6 +1,7 @@
 package com.example.order_service.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,12 @@ public class AppController {
 	@Autowired
 	OrderService orderService;
 	
+	private Environment env;
+	public AppController(Environment env) {
+		// TODO Auto-generated constructor stub
+		this.env=env;
+	}
+	
 	@PostMapping
     public ResponseEntity<Order> createOrder(@RequestParam Long customerId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(customerId));
@@ -28,6 +35,7 @@ public class AppController {
 	
 	@PostMapping("/place/{customerId}")
 	public String placeOrder(@PathVariable Long customerId) {
+		System.out.println(" current running port :"+env.getProperty("local.server.port"));
 		return orderService.placeOrder(customerId);
 		
 	}
