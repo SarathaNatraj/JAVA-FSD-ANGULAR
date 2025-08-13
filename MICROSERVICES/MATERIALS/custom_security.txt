@@ -1,0 +1,26 @@
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		
+		http.authorizeHttpRequests(auth-> auth.requestMatchers("/" ,"/css/**", "*/js/**").permitAll().
+				requestMatchers("/home","/add-customer","/save-customer", "/edit/**", "/update-customer","/delete/**" )
+				.hasRole("ADMIN")
+				.anyRequest()
+				.authenticated())
+		.formLogin(form -> 
+					form.loginPage("/login") //templates -> login.html 
+						.defaultSuccessUrl("/home", true)
+						.permitAll()
+						)
+		.logout(logout -> logout
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/login?logout")
+				.invalidateHttpSession(true)
+				);
+		
+		return http.build();
+				
+				
+		
+			
+		
+	}

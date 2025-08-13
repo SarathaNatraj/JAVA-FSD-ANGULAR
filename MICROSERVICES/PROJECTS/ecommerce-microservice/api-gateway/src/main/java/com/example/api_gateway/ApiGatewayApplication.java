@@ -7,7 +7,6 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
@@ -17,18 +16,20 @@ public class ApiGatewayApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApiGatewayApplication.class, args);
 	}
-	
+
 	@Bean
-    public RouteLocator routes(RouteLocatorBuilder builder) {
-        return builder.routes()
-                .route("product-service", r -> r.path("/api/products/**")
-                        .uri("http://localhost:1111"))
-                .route("customer-service", r -> r.path("/api/customers/**")
-                        .uri("lb:customer-service"))
-                .route("order-service", r -> r.path("/api/orders/**")
-                        .uri("http://localhost:3333"))
-                .route("payment-service", r -> r.path("/api/payments/**")
-                        .uri("http://localhost:4444"))
-                .build();
-    } 	
+	public RouteLocator routes(RouteLocatorBuilder builder) {
+		return builder.routes().route("product-service", r -> r.path("/api/products/**").uri("http://localhost:1111"))
+				.route("customer-service", r -> r.path("/api/customers/**").uri("http://localhost:2222"))
+				.route("order-service", r -> r.path("/api/orders/**").uri("http://localhost:3333"))
+				.route("payment-service", r -> r.path("/api/payments/**").uri("http://localhost:4444")).build();
+	}
+
+	/*
+	 * @Bean public RouteLocator routes(RouteLocatorBuilder builder) { return
+	 * builder.routes() .route("school-service", r -> r.path("/api/school/**")
+	 * .uri("http://localhost:1000")) .route("student-service", r ->
+	 * r.path("/api/student/**") .uri("http://localhost:2000")).build(); }
+	 */
+
 }

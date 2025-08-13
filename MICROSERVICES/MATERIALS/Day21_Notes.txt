@@ -1,0 +1,81 @@
+Kafka
+
+Scenario - As soon as order is placed in the Order-service, Product-service has to update the stock
+
+Producer - Order-service
+Consumer - Product-service
+Kafka Implementation
+	1. Downloaded the Kafka , extracted and placed in to your C:\ drive
+		1. start the zookeeper
+		2. start the server
+		3. start producer.bat
+		4. start the consumer.bat
+	2. Integrate Kafka with SpringBoot application
+		a. Add dependency
+			<dependency>
+				<groupId>org.springframework.kafka</groupId>
+				<artifactId>spring-kafka</artifactId>
+			</dependency>
+		b. Producer MS
+			Order-service
+			i) config -> KafkaConfig
+			@Configuration
+public class KafkaConfig {
+	
+	@Bean
+	public NewTopic newTopic() {
+		NewTopic ordersTopic =  TopicBuilder.name("orders-batch3").build();
+		
+		return ordersTopic;
+		
+	}
+	
+
+}
+		ii)application.properties
+			spring.kafka.producer.key-serializer = org.apache.kafka.common.serialization.LongSerializer
+spring.kafka.producer.value-serializer = org.springframework.kafka.support.serializer.JsonSerializer
+
+spring.output.ansi.enabled= always
+
+
+spring.kafka.producer.properties.spring.json.trusted.packages="com.example.orderservice.model.Order"
+
+spring.kafka.producer.properties.spring.json.type.mapping=order:com.example.orderservice.model.Order
+
+
+spring.kafka.producer.properties.spring.json.add.type.headers=false
+
+		iii). Order-service.java
+				@Autowired
+				private KafkaTemplate<Long, Order> template;
+				
+				
+				template.send("orders-batch3", order.getId(),order);
+				
+	3. consumer MS
+		Product-service
+			i) Add the dependency
+				<dependency>
+					<groupId>org.springframework.kafka</groupId>
+					<artifactId>spring-kafka</artifactId>
+				</dependency>
+			ii) application.properties
+				spring.kafka.consumer.key-deserializer = org.apache.kafka.common.serialization.StringDeserializer
+
+
+				spring.output.ansi.enabled= always
+
+				spring.kafka.consumer.group-id=my-group
+				spring.kafka.consumer.auto-offset-reset=earliest
+
+				spring.kafka.consumer.value-deserializer=org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+				spring.kafka.consumer.properties.spring.deserializer.value.delegate.class=org.springframework.kafka.support.serializer.JsonDeserializer
+
+				spring.kafka.consumer.bootstrap-servers=localhost:9092
+
+				
+			iii) KafkaConfig.java inside the config folder
+					KafkaListener
+			iv) ProductService.java
+					write a custom method to consume the message - this custom method @KafkaListener(topic, group-id, containerFactory="orderListener")

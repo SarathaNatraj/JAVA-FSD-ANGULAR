@@ -1,0 +1,3 @@
+message = inside consumer service OrderDTO [id=79, quantity=5, orderDate=2025-08-13T15:39:59.643241600, customerId=1, productId=null]
+[2m2025-08-13T15:40:59.243+05:30[0;39m [32m INFO[0;39m [35m22760[0;39m [2m--- [product-service] [rap-executor-%d] [0;39m[36mc.n.d.s.r.aws.ConfigClusterResolver     [0;39m [2m:[0;39m Resolving eureka endpoints via configuration
+[2m2025-08-13T15:45:59.262+05:30[0;39m [32m INFO[0;39m [35m22760[0;39m [2m--- [product-service] [rap-executor-%d] [0;39m[36mc.n.d.s.r.aws.ConfigClusterResolver     [0;39m [2m:[0;39m Resolving eureka endpoints via configuration

@@ -1,0 +1,142 @@
+Spring Security
+Key concepts:-
+	authentication - checking who you are Ex :- username/password, token, OAuth login
+	authorization - checking  what you can do Ex:- Only admin can delete the profile, user can only view
+	
+In our Spring Security
+	SecurityFilterChain - request goes through these filter before hitting controller
+	
+Basic Auth -> Add username/password in headers ( Request Param)
+Form Login -> Html Login form with sessions
+OAuth2(Open Authorization) -> Social Logins (Gmail, GitHub etc.)
+JWT -> Stateless token based authentication
+LDAP -> Directory based authentication
+	
+	We will implement in Spring Boot Web App, REST API
+	
+Spring Boot Web App
+	1. Add dependency
+		<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+	2. config package -> create SecurityConfig class
+	
+	
+	package com.example.ecommerce_app.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class SecurityConfig {
+
+    // In-memory users
+    @Bean
+    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
+        var user = User.withUsername("user")
+                .password(passwordEncoder.encode("pass"))
+                .roles("USER")
+                .build();
+
+        var admin = User.withUsername("admin")
+                .password(passwordEncoder.encode("admin123"))
+                .roles("ADMIN")
+                .build();
+
+        return new InMemoryUserDetailsManager(user, admin);
+    }
+
+    // Password encoder
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    // Security rules
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .anyRequest().authenticated()
+            )
+            .formLogin() // default login page
+            .and()
+            .logout();
+
+        return http.build();
+    }
+}
+
+SpringBoot REST API Security:-
+	1. Add dependency
+		<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+	  <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt-api</artifactId>
+        <version>0.11.5</version>
+    </dependency>
+    <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt-impl</artifactId>
+        <version>0.11.5</version>
+        <scope>runtime</scope>
+    </dependency>
+    <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt-jackson</artifactId>
+        <version>0.11.5</version>
+        <scope>runtime</scope>
+    </dependency>
+2. config 
+		create config package, SecurityConfig class
+		
+		
+		csrf - cross side request forgery - type attack request can come from hacker/virus
+
+		import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class SecurityConfig {
+
+   
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/login").permitAll()
+                        .requestMatchers("/api/customers").permitAll() // ✅ allow controller to handle token
+   //                     .requestMatchers("/api/customers/**").hasRole("USER")
+                        
+                        .anyRequest().authenticated()
+                )
+                .build();
+        
+        
+        
+		
+    }
+
+   
+}
+
+
+
+Topics Covered:-
+	Zipkin installation,
+	Integration of zipkin with SpringBoot application
+	Spring Security
+	Implementation of Spring Security with SpringBoot web application, REST API

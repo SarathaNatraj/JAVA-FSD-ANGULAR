@@ -70,7 +70,11 @@ Circuit Breaker  or Fault tolerance
 						"Unknown Phone Number (fallback)", null, 0);
 			}
 
-			
+		
+Topics Covered:-
+		Spring Boot REST API using MongoDB
+		OpenFeign
+		Circuit Breaker
 
 
 

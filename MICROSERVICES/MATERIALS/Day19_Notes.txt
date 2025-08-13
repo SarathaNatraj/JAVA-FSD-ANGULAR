@@ -40,3 +40,81 @@ Implementing the client Load Balancing
 			 .uri("lb:customer-service"))
 		
 Ngx server 
+
+Config-Server - spring-cloud-config-server 
+	centralized configuration service for all the microservices
+		- github repo
+			student-service.properties
+			school-service.properties
+			
+	works with your eureka-server, gateway, 
+	
+	1. create a spring boot rest api which dependency as spring-cloud-config-server
+		eureka-server - start - 1
+		api-gateway - start - 2
+		config-server - start - 3
+		school-service - config-client, discovery-client - 4 
+		student-service
+	2. Create a github repo, create school-service.properties
+		- keep db related properties
+	3. config-server
+		application.properties
+			server.port=8888		spring.cloud.config.server.git.uri=https://github.com/SarathaNatraj/cloud-config-server-repo.git
+	4. school-service - same steps for other microservices
+		application.properties
+			server.port=xxxx
+			spring.config.import=optional:configserver:http://localhost:8888
+
+			
+Distributed Tracing
+	How request is traversing
+		APIGateway -> Order-service -> customer-service
+		each request an unique id will be generated - trace ID
+		Zipkin Server
+		
+		Order-service
+			distributing tracing
+
+1. zipkin server setup:- 
+			
+	Download the zipkin source from github
+		git clone https://github.com/openzipkin/zipkin
+	cd zipkin
+		mvn install -DskipTests=true
+	run 
+	java -jar ./zipkin-server/target/zipkin-server-3.6.0-SNAPSHOT-slim.jar
+	Access zipkin server http://localhost:9411/ 
+2. Integration with SpringBoot Application (Order-service,customer-service)
+	pom.xml
+		<!-- Micrometer Tracing Bridge for Brave (Zipkin) -->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-brave</artifactId>
+		</dependency>
+
+		<!-- Zipkin Reporter -->
+		<dependency>
+			<groupId>io.zipkin.reporter2</groupId>
+			<artifactId>zipkin-reporter-brave</artifactId>
+		</dependency>
+
+		<!-- (Optional) Actuator for health/tracing endpoints -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+	application.properties
+		
+			# Zipkin endpoint (default port 9411)
+			management.zipkin.tracing.endpoint=http://localhost:9411/api/v2/spans
+
+			# Sampling probability (1.0 = 100% of requests traced)
+			management.tracing.sampling.probability=1.0
+
+			# Enable distributed tracing with Brave
+			management.tracing.enabled=true
+
+ 
+Topics Covered:-
+	Load Balancing
+	Distributed Tracing
