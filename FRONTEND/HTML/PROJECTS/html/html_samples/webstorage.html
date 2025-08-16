@@ -1,0 +1,74 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+</head>
+<body>
+    <main>
+
+        <h2>Web Storage Example</h2>
+        <input type="text" id="username" placeholder="Enter your name">
+
+        <button onclick="saveLocal()">Save to Local Storage</button>
+        <button onclick="saveSession()">Save to Session Storage</button>
+        <button onclick="showData()">Show Data</button>
+          <p id="output"></p>
+          <p class="sub">
+
+            browser provides space to store key/value pairs <br/>
+	localStorage - persists data even after you close the browser <br/>
+	sessionStorage - data is cleared once tab/window is closed <br/>
+	
+          </p>
+          <h3>First Div Section</h3>
+          <div>
+
+            <p>
+                input[type="text"]{
+            border: 1px solid black;
+         }
+            </p>
+          </div>
+
+          <div>
+             <h4>First Div Section</h4>
+            <p>
+                input[type="text"]{
+            border: 1px solid black;
+         }
+            </p>
+          </div>
+          <div style="border: 1px solid red; width: 500;height: 200;">
+
+          </div>
+          
+    </main>
+  <script>
+    const output = document.getElementById("output");
+            function saveLocal(){
+                let name=document.getElementById("username").value;
+                localStorage.setItem("name", name);
+                alert("Saved in local")
+            }
+
+             function saveSession(){
+                let name=document.getElementById("username").value;
+                sessionStorage.setItem("name", name);
+                alert("Saved in Session")
+            }
+
+             function showData(){
+                let local=localStorage.getItem("name");
+                let session = sessionStorage.getItem("name");
+                console.log(local+ " "+session);
+                output.innerHTML="<b> local Storage: "+local+ "<br/> <b> Session Storage :" +session;
+                localStorage.setItem("name", name);
+               // alert("Saved in local")
+            }
+      </script>
+      <style>
+
+      </style>
+</body>
+</html>
+        
+        

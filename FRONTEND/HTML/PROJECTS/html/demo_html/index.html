@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("Welcome All");
+   /*   var empId = 123;
+        var empName = "Mario";
+        var salary = 234.234;
+        var grade = 'A';
+        var eligible = true;
+        console.log(empId+" "+empName+" "+salary+" "+grade+" "+eligible);
+        //String template
+        console.log(`Emp Id ${empId} Name ${empName} Salary ${salary}`);
+
+
+        var nameArray = [123,"Mario",true];
+        console.log(`${nameArray[0]} ${nameArray[1]} ${nameArray[2]}`)
+       
+        number1 = 12;
+        number2 = 14;
+        function add(){
+            var number1=12;
+            var number2 = 2;
+            console.log(`Sum ${number1+number2}`);
+        }
+        add();
+        console.log(`Sum ${number1+number2}`);
+     */   
+   
+  /*  n1 = 2;
+   // n2 = 4;
+    n3= 34;
+    if(true){
+        let n1 = 12+2;
+        var n2 = 14+3;
+        console.log(`inside the function ${n1} and ${n2} and ${n3}`)
+    }
+    console.log(`outside the function ${n1} and ${n2}`) 
+   function square(n){
+    return n*n;
+   }
+
+   function cube(n){
+    return n*n*n;
+   }
+
+   function fx(f1,f2,n){
+     return f1(n) + f2(n);
+   }
+   let result = fx(square,cube,3);
+   console.log(`result ${result}`);
+
+   let sqr = (n) => n*n;//ES6 Arrow Function
+   let cb = (n) => n*n*n;
+
+   let data = fx(sqr,cb,3);
+   console.log(`Using arrow function ${data}`)
+
+ 
+
+   / ****************ForEach**************/
+   let greet1 = ['hello','all','a','very','good','great','day','an','to','you'];
+  
+   for(let i=0;i<greet1.length;i++){
+     console.log(greet1[i]+" ");
+   }
+   greet1.forEach(data => console.log(data));
+// ************Map Function*************
+let greetUpperCase = [];
+    for(let i=0;i<greet1.length;i++){
+     //   greetUpperCase.push(greet1[i].toUpperCase());
+   }
+   greetUpperCase.forEach(data => console.log(data));
+
+  
+ //let greetUpperCase1 = greet1.map(s => s.toUpperCase());
+ // greetUpperCase1.forEach(data => console.log(data));
+
+// ************Filter Function************
+let greet_with_a = [];
+for(let i=0;i<greet1.length;i++){
+        if(greet1[i].startsWith("a")){
+            greet_with_a.push(greet1[i])
+        }
+}
+greet_with_a.forEach(input=>console.log(input));
+
+ 
+greet1.filter(s => s.startsWith("a")).forEach(input=>console.log(input));
+
+//*****************Reduce Function*********
+
+let greet = ['hello',1,'a','very','good','great','day','an','to','you'];
+let count = 0;
+let counter = greet.reduce((accum,data)=>{
+    console.log(data);
+   if(typeof data == 'string' && data.startsWith("a")){
+     count++;
+   }
+   return count;
+},0)
+console.log(`Counter of a starts ${counter}`);
+
+
+let numbers = [10,12,20];
+let sum = numbers.reduce((xx,data)=>{
+    xx += data;
+    return xx;
+});
+console.log(sum);
+
+
+
+class Movie{
+    constructor(movieId,movieName,price){
+        this.movieId = movieId;
+        this.movieName = movieName;
+        this.price = price;
+    }
+    printMovieDetails(){
+let movie = new Movie(123,"Avenger",786.98);
+movie.printMovieDetails();
+        console.log(this.movieId)
+        console.log(` this move has ${this.movieId} having ${this.movieName}  at this ${this.price}`)
+    }
+}
+
+let movie1 = {
+    movieId : 123,
+    movieName : "Avengers",
+    price : 823.2
+};
+console.log(`${movie1.movieId} ${movie1.movieName} ${movie1.price}`)
+
+
+
+let str = '5';
+let str1 = 5;
+
+console.log( str == str1);
+
+console.log(str === str1);
+
+
+var equal = (str == str1);
+var equal1 = (str === str1);
+console.log(equal);
+console.log(equal1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+    
+    
+
+
+
+    </script>
+</body>
+</html>

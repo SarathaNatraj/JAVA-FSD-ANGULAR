@@ -1,0 +1,28 @@
+Web Storage 
+	browser provides space to store key/value pairs
+	localStorage - persists data even after you close the browser
+	sessionStorage - data is cleared once tab/window is closed
+	
+	
+	setItem - storing data
+	getItem - fetching data
+	
+CSS
+	p{font-size:12pt; color:red}
+	{property-name:property-value;}
+	
+5 types of selectors:-
+	1. id selector
+		define any html tag with unique id in main section
+		in the css, define the style '#' followed by your id name, { define the property-name and property-value }
+	2. class selector 
+		define any html tag with class name in main section
+		in the css, define the style '.' followed by your class name, { define the property-name and property-value }
+	3. attribute selector
+		define the styles in style section with attribute of the html tags
+	4. Type selector
+		define styles with html tag names
+	5. Group selector
+		define styles for group of html tags
+	6. Psuedo selector - psuedo class
+		htmltag:event
