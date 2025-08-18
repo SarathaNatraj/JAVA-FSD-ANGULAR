@@ -1,0 +1,46 @@
+static typing - at run time we can not change the datatype of the variable
+	Ex:- C, C++, Java, Kotlin
+dynamic typing - at run time we can change the datatype of the variable
+	Ex:- Python, JS
+
+Node JS - server -> to create/run front-end application
+	Front End application could be Angular, React, Vue, 
+NPM - node package manager tool to install the package
+	Angular/Cli - to work angular application
+	Typescript - to work typescript application
+	
+Typescript - .ts or .tsx 
+Javascript - .js
+
+	.ts -> compiled .js , then run your js files
+	compile typescript file -> tsc <file_name>.ts
+	run typescript file -> node <file_name>.js
+	
+	package.json -> similar to pom.xml which has name of the application, main entry point of your application, dependent packages installed in the application, how to run/compile/build/test application
+	
+	Empty folder 
+		Generate a package.json
+			npm init -y
+		To install package 
+			npm install <package_name> Ex:- npm install typescript --save-dev
+		To uninstall package
+			npm uninstall <package_name>
+		Create a typescript config
+			npx tsc --init
+			inside the tsconfig.json
+			{
+				"compilerOptions": {
+					"target": "ES6",
+					"module": "commonjs",
+					"outDir": "./dist",
+					"rootDir": "./src",
+					"strict": true,
+					"esModuleInterop": true
+				}
+			}
+ 
+ 
+ 
+ Typescript classes
+	Similar JS classes,
+	access specifiers - public, private and protected

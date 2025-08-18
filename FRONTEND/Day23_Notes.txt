@@ -26,3 +26,20 @@ CSS
 		define styles for group of html tags
 	6. Psuedo selector - psuedo class
 		htmltag:event
+		
+		
+web responsive in bootstrap
+
+	col-NN - Extra small < 576px
+	col-sm-NN - Small >= 576px
+	col-md-NN - Medium >= 768px
+	col-lg-NN - Large >= 992px
+	col-xl-NN Extra Large >= 1200px
+	col-xxl-NN Extra extra large >= 1400px
+	
+	Ex:- col-12 col-md-6 col-lg-3
+	
+	Full width on small devices
+	6 columns on medium devices(tablets)
+	3 columns on large devices(desktops)
+			
