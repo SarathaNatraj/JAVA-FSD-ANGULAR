@@ -1,0 +1,32 @@
+*ngIf	Conditionally show attendance column
+*ngFor	Loop through students
+ngClass	Apply classes for top/low performers
+ngStyle	Dynamically style text (color, font-weight)
+disabled	Disable the submit button conditionally
+required	Ensure input is not empty
+
+Custom directive
+
+1. Create custom directive with this 
+	ng g d <directive-name>
+	
+2. this will create two files
+	CREATE src/app/directives/highlight-topper.directive.spec.ts (269 bytes)
+	CREATE src/app/directives/highlight-topper.directive.ts (190 bytes)
+3. Give a definition in highlight-topper.directive.ts 
+4. Modify student-dashboard.component.html
+	Replace ngClass and ngStyle with the directive:
+
+	<tr *ngFor="let student of students"
+		[highlightTopper]="student.grade">
+		[xx]="student.grade">
+		
+		<td>{{ student.name }}</td>
+	<td>{{ student.grade }}</td>
+	<td *ngIf="showAttendance">{{ student.attendance }}%</td>
+	</tr>
+5. Register the Directive in app.module.ts
+	import { HighlightTopperDirective } from './directives/highlight-topper.directive';
+
+	add in imports block 'HighlightTopperDirective'
+

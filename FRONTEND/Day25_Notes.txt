@@ -1,0 +1,90 @@
+SPA - Single Page Applications
+	-  Front End frameworks supports SPA
+	- 
+Angular - front end frameworks developed by Google
+		- Gmail, Google cloud console, Microsoft Office Online, Airbnb 
+		- full fledged house
+		- if you need complete, structured framework - choose Angular
+
+React - JS library building UI developed by Meta 
+	 - js components
+	 - ts components 
+	 - modern house only structure is available, on top of this you have to construct UI
+	 Facebook, Instagram, Netflix
+	 - if you need flexibility, speed and huge ecosystem - choose React
+	 
+	 
+Steps to create angular project
+	1. Install Angular cLi as globally we need to do it for one-time
+		npm install -g @angular/cli 
+	2. Create a angular project	ng - node generate 
+		ng new my-angular-app
+		PRESS -> ENTER,
+				 NO
+				 YES
+		then project will be created
+	3. package.json
+		scripts section
+			ng build -> build your front end code - similar mvn install
+			ng serve -> start the your angular app - similar run as Java Application
+			ng test -> run test scripts - similar mvn test
+				 
+	4. Angular component  consists of 4 files
+			.html - templates
+			.css - styles
+			.ts - logic
+			.spec.ts - test case file for the component
+	5. Generate component		
+			ng g c <component_name>
+			Add this component in app.ts
+				imports section
+			Add this component in app.html
+				<app-component-name></app-component-name>
+				
+	6. Routing
+			http://localhost:4200/hello - Hello 
+			http://localhost:4200/welcome - Welcome
+			
+			Adding the routing app.routes.ts -> define the routes there
+				export const routes: Routes = [
+					{path:'hello', component:Hello},
+					{path:'welcome', component:Welcome}
+				];
+			and app.html change the code like this 
+				<nav>
+					<a  href="/hello">Hello Page</a> <br/>
+					<a href="/welcome">Welcome Page</a>
+				</nav>
+				<router-outlet />
+
+
+1. Create a angular project	ng - node generate 
+		ng new my-angular-app
+		PRESS -> ENTER,
+				 NO
+				 YES
+		then project will be created
+2.Go to Terminal 
+		ng serve
+3.Generate component		
+			ng g c <component_name>
+			Add this component in app.ts
+				imports section
+			Add this component in app.html
+				<app-component-name></app-component-name>
+4. Routing
+			http://localhost:4200/hello - Hello 
+			http://localhost:4200/welcome - Welcome
+			
+			Adding the routing app.routes.ts -> define the routes there
+				export const routes: Routes = [
+					{path:'hello', component:Hello},
+					{path:'welcome', component:Welcome}
+				];
+			and app.html change the code like this 
+				<nav>
+					<a  href="/hello">Hello Page</a> <br/>
+					<a href="/welcome">Welcome Page</a>
+				</nav>
+				<router-outlet />
+
