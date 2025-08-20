@@ -88,3 +88,48 @@ Steps to create angular project
 				</nav>
 				<router-outlet />
 
+5. Connect with back-end code
+			create interface -> Customer 
+			create service class - "ng g s <service_name>"
+					will generate only component.ts class and component.spec.ts
+					pure front end logic , this does nt require UI
+					
+			for this (ngSubmit), [(ngModel)] for data binding -  import FormsModule in app.ts 
+			for making http request to backend - import HttpClientModule in app.ts
+			
+			main.ts replace this code
+				import { bootstrapApplication } from '@angular/platform-browser';
+				import { importProvidersFrom } from '@angular/core';
+				import { HttpClientModule } from '@angular/common/http';
+
+				import { App } from './app/app';
+				import { appConfig } from './app/app.config';
+
+				bootstrapApplication(App, {
+				  ...appConfig,
+				  providers: [
+					...appConfig.providers || [],
+					importProvidersFrom(HttpClientModule)  // ✅ Add this line
+				  ]
+				})
+				  .catch((err) => console.error(err));
+				  
+		
+
+			add-customer.html 
+				-> bind each property with [(ngModel)] = customer.name
+				-> on button click  (click)="onSubmit()"
+			add-customer.ts -> define onSubmit function
+				-> call customerservice class method to save the customer
+				
+			view-customer.ts
+				-> class implements OnInit interface
+				-> ngOnInit method should be overridden
+				-> call customerservice.getCustomers 
+				-> map the reult of getCustomers to customers array
+			view-customer.html
+				-> table iterate customers array 
+				->  <tr *ngFor="let customer of customers">
+				
+				
+				
