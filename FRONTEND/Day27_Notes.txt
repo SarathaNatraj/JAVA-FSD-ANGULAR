@@ -1,0 +1,83 @@
+add-customer.html -> form
+	-> name text box -> typing name
+add-customer.ts
+	-> it store into local variable of name
+	
+Data binding -> bind the data from html(<input type=text> - DOM) to ts file variable
+
+	Some builtin directives
+	Directives - spl instructions in the DOM that angular is going to do something with an element, component or attribute
+		change the appearance -> ngStyle or 
+		change the behaviour - 
+	3 types of Directives:-
+		Component Directives -> selector attribute in @Component annotation
+		Structural Directives - ngIf, ngFor, ngSwitch
+		Attribute Directives - ngStyle, ngClass, 
+		
+		custom directives - is possible
+		
+		ngFor
+		
+		<ng-template ngFor = "let customer of customers">
+			<div>{{customer.name}}</div>
+		</ng-template>
+		
+		<div *ngFor="let customer of customers" class="customer-row">
+			<div>{{ customer.id }}</div>
+		</div>
+		
+		FormsModule -> ngModel, ngSubmit
+		CommonModule -> ngIf, ngFor, ngSwitch
+		
+		hello componment->
+			<app-hello></app-hello>
+			
+			Metadata -> @Component decorator -> attributes
+				selector -> to rendered it on a html page
+				standalone -> false for module, yes
+				imports[] -> if this component uses any builtin modules -> FormsModule, CommonModule 
+				tempateUrl -> mapped with which html page
+				styleUrl -> mapped with which css file
+				
+				
+		If display component/property value(ts file) to view (html file) -> {{property.name}} -> Interpolation
+		var name="madhu";
+		console.log(name);
+		console.log(`My name is ${name}`);
+		
+		[property]=name_of_property in your ts name -> Property binding
+		<input type="text" [value]="message" />
+		[(ngModel)] property + value binding => take input and update the property inside ts file 
+		
+		
+	HttpClient -> builtin service for making the Http Requests(GET,POST, DELETE, etc..)
+		1. app.ts
+			Import HttpClientModule 
+		2. provider has to be added in app.config.ts
+			provideHttpClient()
+		3. main.ts 
+			bootstrapApplication(App, {
+				...appConfig,
+				providers: [
+				...appConfig.providers || [],
+					importProvidersFrom(HttpClientModule)  // ✅ Add this line
+				]
+			})
+		4. Inject HttpClient in your service
+			make your service/backend calls
+		
+		
+		Observable - can handle async responses
+			-> any changes httpClient reponse , Angular UI automatically rendered
+		typed responses - supports generics  this.http.get<Customer[]>
+		error handling -> builtin error handing 
+		
+Pending topics
+		directives, custom directives
+		pipes, custom pipes
+		Nesting Components
+		component lifecycle
+		Forms types
+		Material UI
+		Unit Testing -> AAA
+		

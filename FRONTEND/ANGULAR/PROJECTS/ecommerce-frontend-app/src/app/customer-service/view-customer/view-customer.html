@@ -12,6 +12,7 @@
   Loading 
   ...
 </div>
+<input type="text"  [(ngModel)]="message" (change)="onChange()"  />
 
 <div *ngIf="customers.length > 0" class="customer-list">
   <div class="customer-header">

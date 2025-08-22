@@ -3,15 +3,18 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Customerservice } from '../../service/customerservice';
 import { Customer } from '../../types';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-view-customer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './view-customer.html',   // ✅ Angular CLI convention
   styleUrls: ['./view-customer.css']     // ✅ Angular CLI convention
 })
 export class ViewCustomer implements OnInit {
+
+  message='hi';
 
   customers: Customer[] = [];
   errorMessage = '';
@@ -28,6 +31,7 @@ export class ViewCustomer implements OnInit {
 
   this.customerService.getCustomers().subscribe({
     next: (data) => {
+      console.log(data)
       console.log("API Response: ", data, Array.isArray(data));
       
       this.customers = [];
@@ -64,5 +68,8 @@ deleteCustomer(id: number|undefined) {
 editCustomer(id: number|undefined) {
   console.log(" inside edit customer")
   this.router.navigate(['/edit-customer',id]);
+}
+onChange() {
+  console.log(this.message);
 }
 }
