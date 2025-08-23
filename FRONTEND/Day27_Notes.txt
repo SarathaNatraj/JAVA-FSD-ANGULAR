@@ -72,12 +72,48 @@ Data binding -> bind the data from html(<input type=text> - DOM) to ts file vari
 		typed responses - supports generics  this.http.get<Customer[]>
 		error handling -> builtin error handing 
 		
+		
+	Component Lifecycle
+		3 Stages
+			1. Create (initialisation)
+			2. Change Detection & Updates
+			3. Destruction 
+			
+			Interfaces:- 
+		OnInit - ngOnInit() - interface method
+		OnChanges - ngOnchanges() 
+		OnDestroy - ngOnDesstroy() 
+		
+		
+		ngDoCheck () -> check for Property changes
+		ngAfterContentChecked() -> this.prop="welcome" -> chANGIng the content
+		ngAfterViewInit() -> after child DOM is rendered 
+		
+		
+		Component Interaction -> app.ts -> Parent component
+			todo-list.ts -> Child Component
+				todo-item.ts -
+				
+		Component Name     app.ts     todolist.ts  todo-item.ts
+							Parent    Child
+									  Parent 		Child
+									  
+									  
+		Parent to Child any values -> @Input(), @Output()
+			html -> i/p->[], o/p -> ()
+			
+			Lowest Child Component -> todo-item 
+			Middle Child component -> todo-list
+			Parent Component -> app.ts
+			
+			[(ngModel)] -> @NgModel
+		
 Pending topics
-		directives, custom directives
-		pipes, custom pipes
-		Nesting Components
-		component lifecycle
-		Forms types
-		Material UI
-		Unit Testing -> AAA
+		directives, custom directives - done
+		pipes, custom pipes - done
+		Nesting Components - done
+		component lifecycle - done
+		Forms types - monday
+		Material UI -> afternoon
+		Unit Testing -> AAA - monday
 		
