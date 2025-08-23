@@ -1,0 +1,42 @@
+directives, custom directives
+		pipes, custom pipes
+		
+Component Directives -> selector attribute in @Component annotation
+		Structural Directives - ngIf, ngFor, ngSwitch
+		Attribute Directives  - ngStyle, ngClass, 
+		
+		custom directives - is possible
+	
+CommonModule -> import 	
+Structural directives - shaping or modifying DOM structure
+	1. *ngIf -> conditionally rendered divs
+	2. *ngFor -> iterate the data
+	3. *ngSwitch -> multiple conditions to show different UI parts
+Attribute Directives - change appearance or behavior of DOM elements
+	1.	ngClass - add/remove class - style class is declared in css
+	2.	ngStyle - set inline styles dynamically 
+	3.  ngModel - this perfoms two-way data binding -> requires FormsModule
+Custom Directives 
+	1. Generate a directive
+		ng g d highlight
+	2. Implement the directive
+		implement logic
+		
+Pipes
+	- transforms the data
+	- take i/p, process it and  returns a new values
+	Built-in pipes
+		1.Date Pipe
+		2.string pipe - lower, uppercase
+		3.currency pipe 
+		4.Decimal
+		6.Percent 
+		7.Json
+		
+		//Angular -> ralugnA
+		
+Custom Pipe 
+	1. Generate a pipe
+		ng g p reverse
+	2. Implement the pipe
+		implement logic
