@@ -1,0 +1,32 @@
+<p>login works!</p>
+
+<mat-card class="register-card">
+<h2>Login</h2>
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <!--Email-->
+    <mat-form-field appearance="outline">
+
+        <mat-label>Email</mat-label>
+        <input matInput type="email" name="email" ngModel required #email="ngModel" placeholder="Email">
+            <mat-error *ngIf="email.valid && email.touched">
+                Please enter a valid email  
+            </mat-error>
+    </mat-form-field>
+
+     <!--Password-->
+    <mat-form-field appearance="outline">
+
+        <mat-label>Password</mat-label>
+        <input matInput type="password" name="password" ngModel required minlength="6" #password="ngModel" placeholder="Password">
+            <mat-error *ngIf="password.valid && password.touched">
+                Password must be at least 6 characters
+            </mat-error>
+    </mat-form-field>
+    <br/>
+    <!--Button-->
+    <button mat-raised-button color="primary" type="submit" >
+        Login
+    </button>
+</form>
+
+</mat-card>

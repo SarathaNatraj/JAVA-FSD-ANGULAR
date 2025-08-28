@@ -1,0 +1,18 @@
+testing  -> ng test
+
+component, service, pipe, directive -> *.spec.ts -> test case file for UI
+
+Zoneless setup -> .spec.ts file
+
+Angular defult comes with Jasmine -> simple js testing frame work 
+							+
+			Karma test runner 
+							
+
+BackEnd -> @Test -> test annotation -> all test methods inside test class
+
+
+FrontEnd -> describe -> main entry point test script  -> test class 
+		-> inside describe -> it individual test function to test the functionality -> test case
+		
+		

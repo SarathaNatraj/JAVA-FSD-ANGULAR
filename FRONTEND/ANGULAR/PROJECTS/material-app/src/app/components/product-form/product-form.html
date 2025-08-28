@@ -1,0 +1,54 @@
+<p>product-form works!</p>
+
+<mat-card class="register-card">
+  <h2>Add Product</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+    <!-- Product Name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Product Name</mat-label>
+      <input matInput type="text" formControlName="name">
+      <mat-error *ngIf="productForm.get('name')?.hasError('required')">
+        Please enter a product name
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Price -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Price</mat-label>
+      <input matInput type="number" formControlName="price">
+      <mat-error *ngIf="productForm.get('price')?.hasError('required')">
+        Price is required
+      </mat-error>
+      <mat-error *ngIf="productForm.get('price')?.hasError('min')">
+        Price must be greater than 0
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Category -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let cat of categories" [value]="cat">
+          {{cat}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="productForm.get('category')?.hasError('required')">
+        Category is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput rows="3" formControlName="description"></textarea>
+    </mat-form-field>
+
+    <!-- Submit Button -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">
+      Add Product
+    </button>
+
+  </form>
+</mat-card>

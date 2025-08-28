@@ -1,0 +1,6 @@
+Angular Forms :-
+	Template Driven Forms -> pure html forms -> FormsModule - Simple - small forms 
+	Reactive Driven Forms -> form definition will be .ts component -> ReactiveFormsModule - Complex , Larger forms
+	
+		<form [formGroup]="productForm">
+			definition productForm initalisation can be constructor of ts file
