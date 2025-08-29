@@ -9,7 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class TodoItem {
 
-  @Input() todo:any;
+  @Input() todo!:any;
   @Output() remove= new EventEmitter<void>();
 
   removeTodo(){

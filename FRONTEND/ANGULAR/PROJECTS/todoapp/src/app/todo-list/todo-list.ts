@@ -6,12 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { Highlight } from "../highlight";
 import { Tooltip } from '../directives/tooltip';
 import { ReversePipe } from "../pipes/reverse-pipe";
+import {MatListModule} from '@angular/material/list';
+
 
 
 
 @Component({
   selector: 'app-todo-list',
-  imports: [CommonModule, TodoItem, FormsModule, Highlight, Tooltip, ReversePipe],
+  imports: [CommonModule, TodoItem, FormsModule, Highlight, Tooltip, ReversePipe,MatListModule],
   templateUrl: './todo-list.html',
   styleUrl: './todo-list.css'
 })

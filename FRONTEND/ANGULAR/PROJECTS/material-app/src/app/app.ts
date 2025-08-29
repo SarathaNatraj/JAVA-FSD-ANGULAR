@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Register } from "./components/register/register";
+import { Menu } from "./components/menu/menu";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ import { Register } from "./components/register/register";
     MatFormFieldModule,
     MatCardModule,
     MatIconModule,
-    ReactiveFormsModule, Register],
+    ReactiveFormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

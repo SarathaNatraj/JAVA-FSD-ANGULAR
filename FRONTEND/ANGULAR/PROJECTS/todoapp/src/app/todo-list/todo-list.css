@@ -1,3 +1,6 @@
 .highlight{
     color: blue;
 }
+.mat-mdc-list-item-icon {
+  color: rgba(0, 0, 0, 0.54);
+}

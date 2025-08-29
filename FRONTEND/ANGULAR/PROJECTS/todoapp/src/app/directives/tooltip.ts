@@ -8,7 +8,7 @@ export class Tooltip {
 
   private toolTipElement!: HTMLElement;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private readonly el: ElementRef, private readonly renderer: Renderer2) {}
 
   @HostListener('mouseenter') onMouseEnter() {
     if (!this.appTooltip) return;

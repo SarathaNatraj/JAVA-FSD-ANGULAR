@@ -16,6 +16,23 @@
     </li>
 </ul>
 
+<mat-list>
+  @for (todo of todos; track todo) {
+    <mat-list-item>
+     <img matListItemAvatar src="profile.jpg">
+      <h3 matListItemTitle>
+        <app-todo-item
+            [todo]="todo"
+            (remove)="remove(0)">
+        </app-todo-item></h3>
+      <p matListItemLine>
+      </p>
+    </mat-list-item>
+  }
+</mat-list>
+
+
+
 <select [(ngModel)]="role">
     <option [ngValue]="UserRole.ADMIN">Admin</option>
     <option [ngValue]="UserRole.MANAGER">Manager</option>
