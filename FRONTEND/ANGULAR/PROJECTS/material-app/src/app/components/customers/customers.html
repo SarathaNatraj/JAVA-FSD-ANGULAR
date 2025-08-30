@@ -1,0 +1,17 @@
+<p>customers works!</p>
+<mat-card>
+  <h2>Customer List</h2>
+  <button mat-raised-button color="primary" (click)="loadCustomers()">
+    Load Customers
+  </button>
+
+  <div *ngIf="error" style="color: red; margin-top: 10px;">
+    {{ error }}
+  </div>
+
+  <ul *ngIf="customers.length > 0">
+    <li *ngFor="let customer of customers">
+      {{ customer.id }} - {{ customer.name }}
+    </li>
+  </ul>
+</mat-card>
